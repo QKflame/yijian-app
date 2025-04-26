@@ -19,6 +19,7 @@
                 <view
                     v-for="(subCategory, index) in smallCategories"
                     :key="index"
+                    @click="goToQuizPage(subCategory)"
                 >
                     <!-- 显示图标 -->
                     <image :src="subCategory.icon" mode="aspectFit" style="width: 20px; height: 20px; margin-right: 10px;"></image>
@@ -79,6 +80,13 @@ const smallCategories = ref(largeCategories.value[activeLargeCategory.value].sub
 const changeLargeCategory = (index: number) => {
     activeLargeCategory.value = index;
     smallCategories.value = largeCategories.value[index].subCategories;
+};
+
+// 跳转到刷题页面的方法
+const goToQuizPage = (subCategory: any) => {
+    uni.navigateTo({
+        url: `/pages/quizPage/quizPage?category=${encodeURIComponent(subCategory.name)}`
+    });
 };
 </script>
 

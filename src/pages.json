@@ -31,6 +31,12 @@
             "style": {
                 "navigationBarTitleText": "我的"
             }
+        },
+        {
+            "path": "pages/quizPage/quizPage",
+            "style": {
+                "navigationBarTitleText": "刷题百遍，其义自见"
+            }
         }
     ],
     "globalStyle": {
