@@ -3,6 +3,39 @@
         <view class="text-area">
             <rich-text :nodes="parsedMarkdown" class="markdown-body"></rich-text>
         </view>
+        <!-- 底部操作栏 -->
+        <view class="fixed-bottom-bar">
+            <view
+                class="bar-item"
+                @click="showQuestionList"
+            >
+                <image src="/static/icons/toolbar/question-list.png" mode="aspectFit" style="width: 24px; height: 24px;"></image>
+                <text>题目列表</text>
+            </view>
+            <view
+                class="bar-item"
+                @click="toggleAnswerVisibility"
+            >
+                <image src="/static/icons/toolbar/answer.png" mode="aspectFit" style="width: 24px; height: 24px;"></image>
+                <text>{{ showAnswer ? '隐藏答案' : '显示答案' }}</text>
+            </view>
+            <view class="bar-item">
+                <view
+                    class="prev-next-btn"
+                    @click="prevQuestion"
+                >
+                    <image src="/static/icons/toolbar/prev.png" mode="aspectFit" style="width: 24px; height: 24px;"></image>
+                    <text>上一题</text>
+                </view>
+                <view
+                    class="prev-next-btn"
+                    @click="nextQuestion"
+                >
+                    <image src="/static/icons/toolbar/next.png" mode="aspectFit" style="width: 24px; height: 24px;"></image>
+                    <text>下一题</text>
+                </view>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -56,6 +89,32 @@ greet('World');`);
     onMounted(() => {
         parsedMarkdown.value = parseMarkdown(markdownText.value);
     });
+
+// 控制答案显示
+const showAnswer = ref(false);
+
+// 显示题目列表方法
+const showQuestionList = () => {
+    // 这里实现侧拉抽屉显示题目列表的逻辑
+    console.log('显示题目列表');
+};
+
+// 切换答案显示状态
+const toggleAnswerVisibility = () => {
+    showAnswer.value = !showAnswer.value;
+};
+
+// 上一题方法
+const prevQuestion = () => {
+    // 这里实现上一题的逻辑
+    console.log('上一题');
+};
+
+// 下一题方法
+const nextQuestion = () => {
+    // 这里实现下一题的逻辑
+    console.log('下一题');
+};
 </script>
 
 <style>
@@ -63,9 +122,47 @@ greet('World');`);
     .content {
         box-sizing: border-box;
         padding: 16px;
+        padding-bottom: 80px; /* 增加底部 padding 值，防止遮挡 */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    .fixed-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 -2px 12px 0 rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .bar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    /* 修改上一题和下一题按钮的父元素样式 */
+    .bar-item:nth-child(3) {
+        flex-direction: row;
+    }
+
+    .bar-item text {
+        font-size: 12px;
+        color: #333333;
+        margin-top: 4px;
+    }
+
+    .prev-next-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 10px;
     }
 </style>
