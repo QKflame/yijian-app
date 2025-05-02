@@ -49,6 +49,12 @@
             "style": {
                 "navigationBarTitleText": "题目管理"
             }
+        },
+        {
+            "path": "pages/create-question/create-question",
+            "style": {
+                "navigationBarTitleText": "题目发布"
+            }
         }
     ],
     "globalStyle": {
