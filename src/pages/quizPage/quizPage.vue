@@ -309,7 +309,8 @@ const nextQuestion = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #ffebee, #f1f8e9, #f3e5f5);
+    /* background: linear-gradient(45deg, #ffebee, #f1f8e9, #f3e5f5); */
+    background: #fff;
     /* 增加 blur 值以增强高斯模糊效果 */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px); /* 兼容 Safari */
