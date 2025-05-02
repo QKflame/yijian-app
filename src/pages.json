@@ -43,6 +43,12 @@
             "style": {
                 "navigationBarTitleText": "标签管理"
             }
+        },
+        {
+            "path": "pages/question-management/question-management",
+            "style": {
+                "navigationBarTitleText": "题目管理"
+            }
         }
     ],
     "globalStyle": {

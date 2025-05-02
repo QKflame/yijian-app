@@ -92,8 +92,9 @@ const handleTagManagement = () => {
 
 // 处理题目管理点击事件
 const handleQuestionManagement = () => {
-    // 这里可以实现跳转到题目管理页面或者其他逻辑
-    console.log('点击了题目管理');
+    uni.navigateTo({
+        url: '/pages/question-management/question-management'
+    });
 };
 </script>
 
