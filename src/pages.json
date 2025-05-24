@@ -37,24 +37,6 @@
             "style": {
                 "navigationBarTitleText": "刷题百遍，其义自见"
             }
-        },
-        {
-            "path": "pages/tag-management/tag-management",
-            "style": {
-                "navigationBarTitleText": "标签管理"
-            }
-        },
-        {
-            "path": "pages/question-management/question-management",
-            "style": {
-                "navigationBarTitleText": "题目管理"
-            }
-        },
-        {
-            "path": "pages/create-question/create-question",
-            "style": {
-                "navigationBarTitleText": "题目发布"
-            }
         }
     ],
     "globalStyle": {
