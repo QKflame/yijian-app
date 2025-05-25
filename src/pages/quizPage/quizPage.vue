@@ -10,7 +10,11 @@
         <!-- 这里可以添加题目列表内容 -->
         <view class="question-list">
           <!-- 示例题目列表 -->
-          <view v-for="(question, index) in questionList" :key="index">
+          <view
+            v-for="(question, index) in questionList"
+            :key="index"
+            @click="onClickQuestionItem(index)"
+          >
             {{ question.title }}
           </view>
         </view>
@@ -32,21 +36,23 @@
     <view class="text-area" v-if="Boolean(parsedAnswer)">
       <!-- 显示题目 -->
       <!-- <rich-text :nodes="parsedQuestion" class="markdown-body"></rich-text> -->
-      <view class="question-title">{{parsedQuestion}}</view>
-      <!-- 显示答案 -->
-      <view class="answer-area">
-        <rich-text :nodes="parsedAnswer" class="markdown-body"></rich-text>
-        <!-- 答案隐藏时的模糊遮罩 -->
-        <view v-if="!showAnswer" class="answer-mask">
-          <view class="answer-hidden-tip" @click="toggleAnswerVisibility">
-            <image
-              src="/static/icons/toolbar/eye.png"
-              mode="aspectFit"
-              style="width: 20px; height: 20px; margin-right: 10px"
-            ></image>
-            当前答案已隐藏
-          </view>
+      <view class="question-title">{{ parsedQuestion }}</view>
+
+      <!-- 答案隐藏时的模糊遮罩 -->
+      <view v-if="!showAnswer" class="hidden-answer-container" @click="toggleAnswerVisibility">
+        <view>
+          <image
+            src="/static/icons/eye.png"
+            mode="aspectFit"
+            style="width: 20px; height: 20px; margin-right: 10px"
+          ></image>
+          当前答案已隐藏
         </view>
+      </view>
+
+      <!-- 显示答案 -->
+      <view class="answer-area" v-if="showAnswer">
+        <rich-text :nodes="parsedAnswer" class="markdown-body"></rich-text>
       </view>
     </view>
     <!-- 底部操作栏 -->
@@ -253,6 +259,15 @@ const nextQuestion = () => {
   parsedQuestion.value = title;
   queryQuestionDetail(id);
 };
+
+const onClickQuestionItem = (index: number) => {
+  currentQuestionIndex.value = index;
+  const currentQuestion = questionList.value[currentQuestionIndex.value];
+  const { id, title } = currentQuestion;
+  parsedQuestion.value = title;
+  queryQuestionDetail(id);
+  closeDrawer();
+};
 </script>
 
 <style>
@@ -409,13 +424,29 @@ const nextQuestion = () => {
 }
 
 .answer-area {
-    max-width: 98vw;
+  max-width: 98vw;
   position: relative;
   /* 确保没有意外的外边距影响定位 */
   margin: 0;
   /* 确保没有意外的内边距影响定位 */
   padding: 0;
   margin-top: 8px;
+}
+
+.hidden-answer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-top: 12px;
+  padding: 60px 0;
+  white-space: nowrap; /* 防止文本换行 */
+}
+
+.hidden-answer-container view {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 /* 答案隐藏提示样式 */
@@ -457,11 +488,12 @@ const nextQuestion = () => {
   word-break: break-word;
   hyphens: auto;
   line-height: 1.5;
+  width: 98vw;
 }
 
 .yijian-code-block {
-/* 强制所有内容换行（包括连续数字/字母） */
-word-break: break-all;
+  /* 强制所有内容换行（包括连续数字/字母） */
+  word-break: break-all;
   /* 优先按单词换行，仅在必要时打断单词 */
   overflow-wrap: break-word;
   /* 保留代码缩进空格，同时允许自动换行 */
