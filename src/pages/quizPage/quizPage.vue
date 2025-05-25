@@ -31,7 +31,8 @@
 
     <view class="text-area" v-if="Boolean(parsedAnswer)">
       <!-- 显示题目 -->
-      <rich-text :nodes="parsedQuestion" class="markdown-body"></rich-text>
+      <!-- <rich-text :nodes="parsedQuestion" class="markdown-body"></rich-text> -->
+      <view class="question-title">{{parsedQuestion}}</view>
       <!-- 显示答案 -->
       <view class="answer-area">
         <rich-text :nodes="parsedAnswer" class="markdown-body"></rich-text>
@@ -96,57 +97,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 import "highlight.js/styles/github.css";
 import { parseMarkdown } from "@/utils/markdownParser";
 import { apiHost } from "@/utils/global";
-const title = ref("Hello002");
-const markdownText = ref(`# Markdown 测试文档
-
-这是一个用于测试 Markdown 解析的文档，包含多种节点类型。
-
-## 1. 标题示例
-
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-
-## 2. 段落示例
-
-这是一个普通的段落。Markdown 是一种轻量级标记语言，常用于格式化文本。
-
-## 3. 列表示例
-
-### 无序列表
-- 项目 1
-- 项目 2
-  - 子项目 2.1
-  - 子项目 2.2
-- 项目 3
-
-### 有序列表
-1. 第一项
-2. 第二项
-   1. 子项 2.1
-   2. 子项 2.2
-3. 第三项
-
-## 4. 代码块示例
-
-### JavaScript 代码
-\`\`\`javascript
-function greet(name) {
-  console.log(\`Hello, \${name}!\`);
-}
-
-greet('World');`);
 const parsedQuestion = ref("");
 const parsedAnswer = ref("");
-
-/** 是否正在查询答案中 */
-const isLoadingAnswer = ref(false);
 
 // 控制抽屉显示
 const showDrawer = ref(false);
@@ -179,7 +136,7 @@ onLoad((options: any) => {
           if (questionList.value.length > 0) {
             const firstQuestion = questionList.value[currentQuestionIndex.value];
             const { id, title } = firstQuestion;
-            parsedQuestion.value = parseMarkdown(title);
+            parsedQuestion.value = title;
             // 根据 id 查询对应的 answer
             uni.showLoading({
               title: "加载中...",
@@ -190,8 +147,7 @@ onLoad((options: any) => {
               method: "GET",
               success: (res: any) => {
                 if (res.statusCode === 200) {
-                  const { answer } = res.data.data;
-                  debugger;
+                  const { answer } = res.data;
                   parsedAnswer.value = parseMarkdown(answer);
                 }
               },
@@ -211,14 +167,6 @@ onLoad((options: any) => {
     });
   }
 });
-
-// onMounted(() => {
-//   const splitIndex = markdownText.value.indexOf("\n");
-//   const question = markdownText.value.slice(0, splitIndex);
-//   const answer = markdownText.value.slice(splitIndex + 1);
-//   parsedQuestion.value = parseMarkdown(question);
-//   parsedAnswer.value = parseMarkdown(answer);
-// });
 
 // 控制答案显示
 const showAnswer = ref(true);
@@ -262,7 +210,7 @@ const queryQuestionDetail = (questionId: string) => {
     method: "GET",
     success: (res: any) => {
       if (res.statusCode === 200) {
-        const { answer } = res.data.data;
+        const { answer } = res.data;
         parsedAnswer.value = parseMarkdown(answer);
         // 将答案缓存起来
         uni.setStorageSync("question_" + questionId, answer);
@@ -286,7 +234,7 @@ const prevQuestion = () => {
   currentQuestionIndex.value--;
   const currentQuestion = questionList.value[currentQuestionIndex.value];
   const { id, title } = currentQuestion;
-  parsedQuestion.value = parseMarkdown(title);
+  parsedQuestion.value = title;
   queryQuestionDetail(id);
 };
 
@@ -302,7 +250,7 @@ const nextQuestion = () => {
   currentQuestionIndex.value++;
   const currentQuestion = questionList.value[currentQuestionIndex.value];
   const { id, title } = currentQuestion;
-  parsedQuestion.value = parseMarkdown(title);
+  parsedQuestion.value = title;
   queryQuestionDetail(id);
 };
 </script>
@@ -461,6 +409,7 @@ const nextQuestion = () => {
 }
 
 .answer-area {
+    max-width: 98vw;
   position: relative;
   /* 确保没有意外的外边距影响定位 */
   margin: 0;
@@ -495,5 +444,30 @@ const nextQuestion = () => {
 
 .markdown-body {
   margin-bottom: 12px;
+}
+
+.question-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.5;
+}
+
+.yijian-code-block {
+/* 强制所有内容换行（包括连续数字/字母） */
+word-break: break-all;
+  /* 优先按单词换行，仅在必要时打断单词 */
+  overflow-wrap: break-word;
+  /* 保留代码缩进空格，同时允许自动换行 */
+  white-space: pre-wrap;
+  /* 解决长内容溢出问题 */
+  max-width: 100%;
+  overflow-x: auto;
 }
 </style>

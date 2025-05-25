@@ -3,16 +3,18 @@ import hljs from 'highlight.js';
 
 // 创建 markdown-it 实例
 const md = new MarkdownIt({
-    html: true, // 允许 HTML 标签
+    html: false, // 允许 HTML 标签
     linkify: true, // 自动转换链接
     typographer: true, // 启用排版美化
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(str, { language: lang }).value;
-        } catch (__) {}
+            return '<pre class="yijian-code-block"><code>' +
+                   hljs.highlight(str, { language: lang }).value +
+                   '</code></pre>';
+          } catch (__) {}
       }
-      return ''; // 使用默认的高亮处理
+      return '';
     },
   });
 
