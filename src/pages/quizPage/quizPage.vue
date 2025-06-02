@@ -8,7 +8,7 @@
                     <view class="close-btn" @click="closeDrawer"> × </view>
                 </view>
                 <!-- 这里可以添加题目列表内容 -->
-                <view class="question-list" scroll-y style="height: calc(100vh - 160px)">
+                <view class="question-list" scroll-y style="height: calc(100vh - 140px)">
                     <!-- 示例题目列表 -->
                     <view v-for="(question, index) in questionList" :key="index" @click="onClickQuestionItem(index)">
                         {{ question.title }}
@@ -234,6 +234,11 @@
         const {id, title} = currentQuestion;
         parsedQuestion.value = title;
         queryQuestionDetail(id);
+        // 滚动到页面顶部
+        uni.pageScrollTo({
+            scrollTop: 0,
+            duration: 100
+        });
     };
 
     // 下一题方法
@@ -250,6 +255,11 @@
         const {id, title} = currentQuestion;
         parsedQuestion.value = title;
         queryQuestionDetail(id);
+        // 滚动到页面顶部
+        uni.pageScrollTo({
+            scrollTop: 0,
+            duration: 100
+        });
     };
 
     const onClickQuestionItem = (index: number) => {
@@ -259,6 +269,11 @@
         parsedQuestion.value = title;
         queryQuestionDetail(id);
         closeDrawer();
+        // 滚动到页面顶部
+        uni.pageScrollTo({
+            scrollTop: 0,
+            duration: 100
+        });
     };
 </script>
 
@@ -409,9 +424,9 @@
 
     .text-area {
         position: relative;
-        /* 确保没有意外的外边距影响定位 */
+        /* 确保没有意外外的外边距影响定位 */
         margin: 0;
-        /* 确保没有意外的内边距影响定位 */
+        /* 确保没有意外外的内边距影响定位 */
         padding: 0;
     }
 
@@ -477,7 +492,7 @@
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: pre-wrap;
-        word-break: break-word;
+        word-break: break-all;
         hyphens: auto;
         line-height: 1.5;
         width: 98vw;
