@@ -1,24 +1,24 @@
 {
-    "tabBar": {
-        "color": "#bfbfbf",
-        "selectedColor": "#EA7A99",
-        "backgroundColor": "#FFFFFF",
-        "borderStyle": "black",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "题库",
-                "iconPath": "static/icons/toolbar/book.png",
-                "selectedIconPath": "static/icons/toolbar/book-active.png"
-            },
-            {
-                "pagePath": "pages/user/user",
-                "text": "我的",
-                "iconPath": "static/icons/toolbar/user.png",
-                "selectedIconPath": "static/icons/toolbar/user-active.png"
-            }
-        ]
-    },
+    // "tabBar": {
+    //     "color": "#bfbfbf",
+    //     "selectedColor": "#EA7A99",
+    //     "backgroundColor": "#FFFFFF",
+    //     "borderStyle": "black",
+    //     "list": [
+    //         {
+    //             "pagePath": "pages/index/index",
+    //             "text": "题库",
+    //             "iconPath": "static/icons/toolbar/book.png",
+    //             "selectedIconPath": "static/icons/toolbar/book-active.png"
+    //         },
+    //         {
+    //             "pagePath": "pages/user/user",
+    //             "text": "我的",
+    //             "iconPath": "static/icons/toolbar/user.png",
+    //             "selectedIconPath": "static/icons/toolbar/user-active.png"
+    //         }
+    //     ]
+    // },
     "pages": [
         {
             "path": "pages/index/index",
