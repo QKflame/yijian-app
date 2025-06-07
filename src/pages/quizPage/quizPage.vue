@@ -480,8 +480,103 @@
         white-space: nowrap; /* 防止文本换行 */
     }
 
+    /* 新增 Markdown 样式 */
     .markdown-body {
         margin-bottom: 12px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* 标题样式 */
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6 {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+
+    .markdown-body h1 {
+        padding-bottom: 0.3em;
+        font-size: 2em;
+        border-bottom: 1px solid #eaecef;
+    }
+
+    .markdown-body h2 {
+        padding-bottom: 0.3em;
+        font-size: 1.5em;
+        border-bottom: 1px solid #eaecef;
+    }
+
+    .markdown-body h3 {
+        font-size: 1.25em;
+    }
+
+    .markdown-body h4 {
+        font-size: 1em;
+    }
+
+    .markdown-body h5 {
+        font-size: 0.875em;
+    }
+
+    .markdown-body h6 {
+        font-size: 0.85em;
+        color: #6a737d;
+    }
+
+    /* 段落样式 */
+    .markdown-body p {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    /* 列表样式 */
+    .markdown-body ul,
+    .markdown-body ol {
+        margin-top: 0;
+        margin-bottom: 16px;
+        padding-left: 2em;
+    }
+
+    /* 代码块样式 */
+    .markdown-body pre {
+        margin-top: 0;
+        margin-bottom: 16px;
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #f6f8fa;
+        border-radius: 3px;
+    }
+
+    .markdown-body code {
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        background-color: rgba(27,31,35,0.05);
+        border-radius: 3px;
+    }
+
+    .markdown-body pre code {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    /* 链接样式 */
+    .markdown-body a {
+        color: #0366d6;
+        text-decoration: none;
+    }
+
+    .markdown-body a:hover {
+        text-decoration: underline;
     }
 
     .question-title {
