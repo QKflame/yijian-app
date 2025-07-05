@@ -428,6 +428,9 @@
         margin: 0;
         /* 确保没有意外外的内边距影响定位 */
         padding: 0;
+        box-sizing: border-box;
+        width: 750rpx;
+        padding: 0 32rpx;
     }
 
     .answer-area {
@@ -560,7 +563,7 @@
         padding: 0.2em 0.4em;
         margin: 0;
         font-size: 85%;
-        background-color: rgba(27,31,35,0.05);
+        background-color: rgba(27, 31, 35, 0.05);
         border-radius: 3px;
     }
 
