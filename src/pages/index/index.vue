@@ -72,6 +72,20 @@ const largeCategories = ref([
       { name: "PostgreSQL", icon: "/static/icons/postgresql-icon.svg" },
     ],
   },
+//   {
+//     name: "大模型",
+//     subCategories: [
+//       { name: "Hugging Face", icon: "/static/icons/huggingface-icon.svg" },
+//       { name: "PyTorch", icon: "/static/icons/pytorch-icon.svg" },
+//       { name: "TensorFlow", icon: "/static/icons/tensorflow-icon.svg" },
+//       { name: "LangChain", icon: "/static/icons/langchain-icon.svg" },
+//       { name: "Ollama", icon: "/static/icons/ollama-icon.svg" },
+//       { name: "vLLM", icon: "/static/icons/vllm-icon.svg" },
+//       { name: "DeepSpeed", icon: "/static/icons/deepspeed-icon.svg" },
+//       { name: "Colossal-AI", icon: "/static/icons/colossal-ai-icon.svg" },
+//       { name: "MindSpore", icon: "/static/icons/mindspore-icon.svg" },
+//     ],
+//   },
 ]);
 
 // 当前激活的大分类索引

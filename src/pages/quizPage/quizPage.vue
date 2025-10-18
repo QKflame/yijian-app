@@ -603,7 +603,7 @@ const onClickQuestionItem = (index: number) => {
 }
 
 .question-title {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 8px;
   max-width: 100%;
@@ -614,6 +614,8 @@ const onClickQuestionItem = (index: number) => {
   hyphens: auto;
   line-height: 1.5;
   width: 98vw;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .yijian-code-block {

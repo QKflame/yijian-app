@@ -22,9 +22,12 @@ const md = new MarkdownIt({
 });
 
 md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
-    const level = tokens[idx].level;
-    // 增加 style 样式
-    tokens[idx].attrPush(['style', `margin-top: 4px;margin-bottom:4px`]);
+    const token = tokens[idx];
+    if (token.tag === 'h1') {
+         tokens[idx].attrPush(['style', `margin-top: 4px;margin-bottom:4px;font-size:24px;`]);
+    } else {
+         tokens[idx].attrPush(['style', `margin-top: 4px;margin-bottom:4px`]);
+    }
     return self.renderToken(tokens, idx, options);
 };
 
